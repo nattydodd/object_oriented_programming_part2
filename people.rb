@@ -4,8 +4,11 @@ class Person
     @name = name
   end
 
-end
+  def greeting
+    puts "Hi, my name is #{@name}."
+  end
 
+end
 
 class Student < Person
 
@@ -22,3 +25,18 @@ class Instructor < Person
   end
 
 end
+
+chris = Instructor.new("Chris")
+chris.greeting
+
+cristina = Student.new("Cristina")
+cristina.greeting
+
+chris.teach
+
+cristina.learn
+
+cristina.teach
+#This creates a "NoMethodError" because
+# the .teach method only applies to the Instructor
+# class. The Student class cannot access this method.

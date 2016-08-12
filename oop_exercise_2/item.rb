@@ -1,6 +1,12 @@
-require_relative 'receipt'
+# require_relative 'receipt'
 
 class Item
+
+  @@total_price = 0
+
+  def self.total_price
+    @@total_price
+  end
 
   def initialize(name, type, price, import)
     @name = name
@@ -9,30 +15,28 @@ class Item
     @import = import
   end
 
-  # def item_type(@type)
-  # end
-
 
   def add_tax
      if ( @type == "food" || "medical" || "books" ) && ( @import == "false" )
-        puts @price
+        puts "#{@name}: $#{@price}"
+        @@total_price += @price
      elsif ( @type == "food" || "medical" || "books" ) && ( @import == "true" )
-        puts @price * 1.05
+        puts "#{@name}: $#{@price * 1.05}"
+        @@total_price += @price
      else
-        puts @price * 1.10
-    end
+        puts "#{@name}: $#{@price * 1.10}"
+        @@total_price += @price
+     end
   end
+
 end
 
 
-  # def add_import_tax(@price)
-  #   @price * 1.05
-  #   return item_w_import_tax
-  # end
 
+chocolate = Item.new("Chocolate", "food", 1.99, "true")
+tylenol = Item.new("Tylenol", "medical", 5.00, "false")
 
-
-
-
-chocolate = Item.new("chocolate", "food", 1.99, "true")
 chocolate.add_tax
+tylenol.add_tax
+puts "Sales Tax: "
+puts "Total Bill: $#{ Item.total_price }"

@@ -38,6 +38,7 @@ class Item
         @@sales_tax += (@price * 0.10).round(2)
         @@total_price += (@price * 1.10).round(2)
      end
+     
   end
 
 
@@ -68,8 +69,8 @@ puts "Total Bill: $#{ Item.total_price.round(2) }"
 
 #Item List #3
 import_perfume2 = Item.new("Imported Perfume", "perfume", 27.99, true)
-perfume = Item.new("Perfume", "perfume", 18.99, true)
-pills = Item.new("Headache Pills", "medical", 9.75, true)
+perfume = Item.new("Perfume", "perfume", 18.99, false)
+pills = Item.new("Headache Pills", "medical", 9.75, false)
 import_choc2 = Item.new("Imported Chocolate", "food", 11.25, true)
 
 import_perfume2.add_tax

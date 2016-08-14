@@ -47,7 +47,6 @@ class Item
 end
 
 
-
 #Shopping List #1
 #*******************************************
 
@@ -56,17 +55,16 @@ book = Item.new("Book", "book", 12.49, false)
 music_cd = Item.new("Music CD", "music", 14.99, false)
 chocolate_bar = Item.new("Chocolate Bar", "food", 0.85, false)
 
-
-#Would like to make this universal, instead of having to call each item seperately
-
 item_list1 = {
   book.name => book.add_tax,
   music_cd.name => music_cd.add_tax,
   chocolate_bar.name => chocolate_bar.add_tax
 }
-
+#^^^Would like to make this universal, instead of having to call each item seperately
 
 receipt1 = Receipt.new(item_list1)
+
+#Printing Receipt 1
 receipt1.print_items
 
 puts "Sales Tax: $#{ Item.sales_tax }"
@@ -84,7 +82,10 @@ item_list2 = {
   import_perfume.name => import_perfume.add_tax,
 }
 
+
 receipt2 = Receipt.new(item_list2)
+
+#Printing Receipt 2
 receipt2.print_items
 
 puts "Sales Tax: $#{ Item.sales_tax }"
@@ -107,6 +108,8 @@ item_list3 = {
 }
 
 receipt3 = Receipt.new(item_list3)
+
+#Printing Receipt 3
 receipt3.print_items
 
 puts "Sales Tax: $#{ Item.sales_tax }"

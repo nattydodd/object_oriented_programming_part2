@@ -4,9 +4,15 @@ class Item
 
   attr_reader :name
   attr_reader :price
+  attr_accessor :sales_tax
+  attr_accessor :total_price
 
   @@total_price = 0
   @@sales_tax = 0
+
+  def total_price
+    return @@total_price
+  end
 
   def self.total_price
     @@total_price
@@ -14,6 +20,10 @@ class Item
 
   def self.sales_tax
     @@sales_tax
+  end
+
+  def sales_tax=(sales_tax)
+    @@sales_tax = sales_tax
   end
 
   def initialize(name, type, price, import)
@@ -44,6 +54,14 @@ class Item
      end
   end
 
+  def self.total_price=(total_price)
+    @@total_price = total_price
+  end
+
+  def self.sales_tax=(sales_tax)
+    @@sales_tax = sales_tax
+  end
+
 end
 
 
@@ -70,6 +88,10 @@ receipt1.print_items
 puts "Sales Tax: $#{ Item.sales_tax }"
 puts "Total Bill: $#{ Item.total_price }"
 
+#resets the sales tax and total price to zero for the next receipt
+Item.sales_tax=(0)
+Item.total_price=(0)
+
 # Shopping List 2
 # ****************************************************
 
@@ -90,6 +112,9 @@ receipt2.print_items
 
 puts "Sales Tax: $#{ Item.sales_tax }"
 puts "Total Bill: $#{ Item.total_price }"
+
+Item.sales_tax=(0)
+Item.total_price=(0)
 
 # Shopping List 3
 # ******************************************
@@ -115,6 +140,9 @@ receipt3.print_items
 puts "Sales Tax: $#{ Item.sales_tax }"
 puts "Total Bill: $#{ Item.total_price }"
 
-#Notes: Sales & Total tax is cumulative for all bills if code is ran together
+Item.sales_tax=(0)
+Item.total_price=(0)
+
+#Notes:
 ## numbers are not rounding to the nearest 5
 ##

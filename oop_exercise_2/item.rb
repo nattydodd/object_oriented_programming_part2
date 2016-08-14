@@ -50,36 +50,7 @@ class Item
 
   end
 
-  # def calc_sales_tax
-  #   if ( @type == "food" || @type == "medical" || @type == "book" ) && ( @import == false )
-  #      @@sales_tax
-  #      puts "Sales tax: #{ @@sales_tax }"
-  #   elsif ( @type == "food" || @type == "medical" || @type == "book" ) && ( @import == true )
-  #      puts "Sales tax: #{ @@sales_tax += (@price * 0.05).round(2) }"
-  #   elsif ( @type != "food" || @type != "medical" || @type != "book" ) && ( @import == true )
-  #      puts "Sales tax: #{ @@sales_tax += (@price * 0.15).round(2) }"
-  #   else
-  #      puts "Sales tax: #{@@sales_tax += (@price * 0.10).round(2) }"
-  #   end
-  # end
-
 end
-
-#Item List #1
-#*******************************************
-
-
-book = Item.new("Book", "book", 12.49, false)
-music_cd = Item.new("Music CD", "music", 14.99, false)
-chocolate_bar = Item.new("Chocolate Bar", "food", 0.85, false)
-
-
-#Would like to make this universal, instead of having to call each item seperately
-item_list1 = {
-  book.name => book.add_tax,
-  music_cd.name => music_cd.add_tax,
-  chocolate_bar.name => chocolate_bar.add_tax
-}
 
 
 class Receipt
@@ -96,9 +67,65 @@ class Receipt
 
 end
 
-receipt1 = Receipt.new(item_list1)
+#Shopping List #1
+#*******************************************
 
+
+book = Item.new("Book", "book", 12.49, false)
+music_cd = Item.new("Music CD", "music", 14.99, false)
+chocolate_bar = Item.new("Chocolate Bar", "food", 0.85, false)
+
+
+Would like to make this universal, instead of having to call each item seperately
+item_list1 = {
+  book.name => book.add_tax,
+  music_cd.name => music_cd.add_tax,
+  chocolate_bar.name => chocolate_bar.add_tax
+}
+
+
+receipt1 = Receipt.new(item_list1)
 receipt1.print_items
+
+puts "Sales Tax: $#{ Item.sales_tax }"
+puts "Total Bill: $#{ Item.total_price }"
+
+# Shopping List 2
+# ****************************************************
+
+
+import_choc = Item.new("Imported Chocolate", "food", 10.00, true)
+import_perfume = Item.new("Imported Perfume", "perfume", 47.50, true)
+
+item_list2 = {
+  import_choc.name => import_choc.add_tax,
+  import_perfume.name => import_perfume.add_tax,
+}
+
+receipt2 = Receipt.new(item_list2)
+receipt2.print_items
+
+puts "Sales Tax: $#{ Item.sales_tax }"
+puts "Total Bill: $#{ Item.total_price }"
+
+# Shopping List 3
+# ******************************************
+
+
+import_perfume2 = Item.new("Imported Perfume", "perfume", 27.99, true)
+perfume = Item.new("Perfume", "perfume", 18.99, false)
+pills = Item.new("Headache Pills", "medical", 9.75, false)
+import_choc2 = Item.new("Imported Chocolate", "food", 11.25, true)
+
+item_list3 = {
+  import_perfume2.name => import_perfume2.add_tax,
+  perfume.name => perfume.add_tax,
+  pills.name => pills.add_tax,
+  import_choc2.name => import_choc2.add_tax
+}
+
+receipt3 = Receipt.new(item_list3)
+receipt3.print_items
 
 puts "Sales Tax: $#{ Item.sales_tax }"
 puts "Total Bill: $#{ Item.total_price }"
